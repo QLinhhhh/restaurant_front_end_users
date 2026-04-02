@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hikari Fine Dining - Tra cứu đặt bàn">
+    <title>Hikari Fine Dining - Tra cứu thông tin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
+    <style>
+        .search-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .search-title {
+            text-align: center;
+            color: var(--gold-primary);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+        }
+        .search-result {
+            margin-top: 30px;
+        }
+        .reservation-card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .reservation-card h3 {
+            color: var(--gold-secondary);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .res-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .res-info div {
+            font-size: 0.95rem;
+        }
+        .res-info label {
+            color: #888;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .res-items {
+            margin-top: 15px;
+            border-top: 1px dashed #444;
+            padding-top: 15px;
+        }
+        .res-item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .res-total {
+            text-align: right;
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html">
+                <img src="images/logo.svg" alt="Hikari Logo">
+            </a>
+        </div>
+        <div class="sidebar-tagline">
+            THE ART OF<br>AUTHENTIC<br>JAPANESE
+        </div>
+        <div class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="Dat_ban_menu.html">Đặt bàn</a></li>
+                <li><a href="Thuc_don.html">Thực đơn</a></li>
+                <li><a href="Tra_cuu.html" class="active">Tra cứu đơn</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-lang">
+            <a href="#" class="lang-btn" data-lang="en">EN</a> <span style="color:#555">|</span> <a href="#" class="lang-btn active" data-lang="vi">VI</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <section class="menu-header" style="height: 30vh; min-height: 250px;">
+            <img src="images/image-16.jpg" alt="Header">
+            <div class="menu-header-overlay" style="padding-top: 50px;">
+                <h1>Tra Cứu Đặt Bàn</h1>
+                <p class="menu-sub">KIỂM TRA THÔNG TIN ĐƠN CỦA QUÝ KHÁCH</p>
+            </div>
+        </section>
+
+        <section class="search-container">
+            <h2 class="search-title">Thông tin xác thực</h2>
+            <form id="search-form" class="reservation-form">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Họ và tên</label>
+                    <input type="text" id="s_fullname" required placeholder="Nhập họ tên...">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Số điện thoại</label>
+                    <input type="tel" id="s_phone" required placeholder="Nhập số điện thoại...">
+                </div>
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label>Email</label>
+                    <input type="email" id="s_email" required placeholder="Nhập email...">
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn-reserve" id="btn-search">Kiểm tra thông tin</button>
+                </div>
+            </form>
+
+            <div class="search-result" id="search-result"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-top">
+                <h3>Hikari Fine Dining</h3>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('s_fullname').value;
+            const phone = document.getElementById('s_phone').value;
+            const email = document.getElementById('s_email').value;
+            
+            const btn = document.getElementById('btn-search');
+            btn.textContent = 'Đang tra cứu...';
+            btn.disabled = true;
+
+            const resContainer = document.getElementById('search-result');
+            resContainer.innerHTML = '';
+
+            try {
+                const response = await fetch('http://localhost:3000/api/reservations/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullname, phone, email })
+                });
+
+                if (response.ok) {
+                    const reservations = await response.json();
+                    
+                    if (reservations.length === 0) {
+                        resContainer.innerHTML = '<p style="text-align:center; color:#ff8888;">Không tìm thấy thông tin đặt bàn khớp với dữ liệu trên.</p>';
+                    } else {
+                        let html = '';
+                        reservations.forEach(res => {
+                            const date = new Date(res.date).toLocaleString('vi-VN');
+                            const creationDate = new Date(res.createdAt).toLocaleDateString('vi-VN');
+                            
+                            let itemsHtml = '';
+                            if (res.order && res.order.length > 0) {
+                                res.order.forEach(item => {
+                                    itemsHtml += `
+                                        <div class="res-item-row">
+                                            <span>${item.name} x${item.qty}</span>
+                                            <span>${item.subtotal.toLocaleString('vi-VN')}đ</span>
+                                        </div>
+                                    `;
+                                });
+                            } else {
+                                itemsHtml = '<p>Không đặt món trước.</p>';
+                            }
+
+                            html += `
+                                <div class="reservation-card">
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <h3>Đơn đặt ngày: ${creationDate}</h3>
+                                        <span class="status-badge">${res.status || 'Đã xác nhận'}</span>
+                                    </div>
+                                    <div class="res-info">
+                                        <div><label>Người đặt</label>${res.fullname}</div>
+                                        <div><label>SĐT</label>${res.phone}</div>
+                                        <div><label>Thời gian đến</label>${date}</div>
+                                        <div><label>Số khách</label>${res.guests}</div>
+                                    </div>
+                                    <div style="font-size:0.9rem; color:#aaa;">
+                                        <label>Ghi chú:</label> ${res.notes || 'Không có'}
+                                    </div>
+                                    <div class="res-items">
+                                        <label style="color:#888; font-size:0.85rem; margin-bottom:10px; display:block;">Món đã chọn:</label>
+                                        ${itemsHtml}
+                                        <div class="res-total">Tổng bill: ${res.total.toLocaleString('vi-VN')}đ</div>
+                                    </div>
+                                    <div style="margin-top:20px; text-align:right;">
+                                        <button onclick="cancelReservation('${res._id}')" style="background:#cc2222; color:white; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;" class="btn-cancel">Hủy Đơn Này</button>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        resContainer.innerHTML = html;
+                    }
+                } else {
+                    resContainer.innerHTML = '<p style="text-align:center; color:#ff8888;">Có lỗi xảy ra khi tra cứu.</p>';
+                }
+            } catch (err) {
+                console.error(err);
+                resContainer.innerHTML = '<p style="text-align:center; color:#ff8888;">Lỗi kết nối máy chủ.</p>';
+            } finally {
+                btn.textContent = 'Kiểm tra thông tin';
+                btn.disabled = false;
+            }
+        });
+
+        async function cancelReservation(id) {
+            if (!confirm('Bạn có chắc chắn muốn hủy đơn đặt bàn này không? Hành động này không thể hoàn tác.')) return;
+            try {
+                const response = await fetch(`http://localhost:3000/api/reservations/${id}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert('Hủy đơn thành công!');
+                    document.getElementById('search-form').dispatchEvent(new Event('submit'));
+                } else {
+                    alert('Hủy đơn thất bại. Vui lòng thử lại.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Lỗi kết nối máy chủ');
+            }
+        }
+    </script>
+</body>
+</html>

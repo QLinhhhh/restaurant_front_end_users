@@ -1,0 +1,57 @@
+/* ===== GALLERY STRIP (Homepage) ===== */
+.gallery-strip {
+    background: #1a1a1a;
+    overflow: hidden;
+}
+.gallery-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+}
+.gallery-item {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+    transition: all 0.5s ease;
+    display: block;
+}
+.gallery-item:hover img {
+    filter: brightness(0.85);
+    transform: scale(1.06);
+}
+.gallery-item-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 14px 12px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%);
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: #d4a843;
+    text-align: center;
+    transform: translateY(4px);
+    transition: transform 0.3s;
+}
+.gallery-item:hover .gallery-item-label { transform: translateY(0); }
+
+/* ===== DINING PREVIEW (Success page) ===== */
+.dining-preview {
+    display: flex;
+    overflow: hidden;
+    gap: 3px;
+    background: #1a1a1a;
+    line-height: 0;
+    font-size: 0;
+}
+.dining-preview img {
+    flex: 1;
+    min-width: 0;
+    transition: filter 0.4s;
+}
+.dining-preview img:hover { filter: brightness(0.9) !important; }

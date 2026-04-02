@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hikari Fine Dining - Thực đơn ẩm thực Nhật Bản cao cấp">
+    <title>Hikari Fine Dining - Thực đơn</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html">
+                <img src="images/logo.svg" alt="Hikari Logo">
+            </a>
+        </div>
+        <div class="sidebar-tagline">
+            THE ART OF<br>AUTHENTIC<br>JAPANESE
+        </div>
+        <div class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="Dat_ban_menu.html">Đặt bàn</a></li>
+                <li><a href="Thuc_don.html" class="active">Thực đơn</a></li>
+                <li><a href="Tra_cuu.html">Tra cứu đơn</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-lang">
+            <a href="#" class="lang-btn" data-lang="en">EN</a> <span style="color:#555">|</span> <a href="#" class="lang-btn active" data-lang="vi">VI</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT (VIEW ONLY - no +/- buttons) -->
+    <main class="main-content menu-view">
+        <!-- MENU HEADER -->
+        <section class="menu-header">
+            <img src="images/image-3.jpg" alt="Menu Header">
+            <div class="menu-header-overlay">
+                <h1>Thực đơn</h1>
+                <p class="menu-sub">TINH HOA ẨM THỰC THƯỢNG LƯU</p>
+                <p>Mỗi món ăn tại Hikari không chỉ là sự kết hợp nguyên liệu, mà là cuộc hành trình qua các vùng miền của Nhật Bản. Từ những lát cá tươi sống nhập khẩu trực tiếp từ chợ Tsukiji đến thịt bò Wagyu A5 thượng hạng, chúng tôi mang đến trải nghiệm ẩm thực đẳng cấp nhất.</p>
+            </div>
+        </section>
+
+        <!-- MENU TABS -->
+        <div class="menu-tabs">
+            <button class="menu-tab active" data-category="all">Tất cả</button>
+            <button class="menu-tab" data-category="khai-vi">Món khai vị</button>
+            <button class="menu-tab" data-category="mon-chinh">Món chính</button>
+            <button class="menu-tab" data-category="sashimi">Sashimi</button>
+        </div>
+
+        <!-- MÓN KHAI VỊ -->
+        <div class="menu-category" data-cat="khai-vi">
+            <h2 class="menu-category-title">Món khai vị</h2>
+        </div>
+        <div class="menu-items" data-cat="khai-vi" id="menu-khai-vi">
+            <!-- Items sẽ được chèn qua script.js -->
+        </div>
+
+        <!-- MÓN CHÍNH -->
+        <div class="menu-category" data-cat="mon-chinh">
+            <h2 class="menu-category-title">Món chính</h2>
+        </div>
+        <div class="menu-items" data-cat="mon-chinh" id="menu-mon-chinh">
+            <!-- Items sẽ được chèn qua script.js -->
+        </div>
+
+        <!-- SASHIMI -->
+        <div class="menu-category" data-cat="sashimi">
+            <h2 class="menu-category-title">Sashimi</h2>
+        </div>
+        <div class="menu-items" data-cat="sashimi" id="menu-sashimi">
+            <!-- Items sẽ được chèn qua script.js -->
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-top">
+                <h3>Hikari Fine Dining</h3>
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <h4>Lưu ý nhỏ</h4>
+                        <p>Quý khách vui lòng đặt bàn trước 2 tiếng để Hikari có sự chuẩn bị chu đáo nhất.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Chính sách</h4>
+                        <p>Trang phục lịch sự (Dress code) sẽ góp phần hoàn thiện trải nghiệm của quý khách.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Liên hệ đặt bàn</h4>
+                        <div class="footer-contact">
+                            <span class="phone-icon">📞</span>
+                            <span>0936 186 667</span>
+                        </div>
+                        <div class="footer-socials">
+                            <a href="#" class="social-fb" title="Facebook">f</a>
+                            <a href="#" class="social-ig" title="Instagram">📷</a>
+                            <a href="#" class="social-tt" title="TikTok">♪</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

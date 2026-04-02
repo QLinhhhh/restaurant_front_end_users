@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#c9c9c9" stroke-width="3"/>
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  
+  <!-- Inner circle -->
+  <circle cx="100" cy="100" r="45" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  
+  <!-- Center dot -->
+  <circle cx="100" cy="100" r="6" fill="#c9c9c9"/>
+  
+  <!-- 5 petals (Oda clan crest style) -->
+  <!-- Petal 1 - top -->
+  <path d="M100,55 Q85,35 75,25 Q95,30 100,15 Q105,30 125,25 Q115,35 100,55" fill="#c9c9c9"/>
+  <path d="M100,55 Q90,45 85,38 Q100,42 115,38 Q110,45 100,55" fill="#3a3a3a"/>
+  
+  <!-- Petal 2 - top right -->
+  <path d="M130,72 Q142,55 155,50 Q148,65 162,72 Q148,78 142,95 Q135,80 130,72" fill="#c9c9c9" transform="rotate(0,100,100)"/>
+  
+  <!-- Petal 3 - bottom right -->
+  <path d="M125,115 Q140,120 150,135 Q135,128 132,145 Q122,132 110,130 Q120,122 125,115" fill="#c9c9c9"/>
+  
+  <!-- Petal 4 - bottom left -->
+  <path d="M75,115 Q60,120 50,135 Q65,128 68,145 Q78,132 90,130 Q80,122 75,115" fill="#c9c9c9"/>
+  
+  <!-- Petal 5 - top left -->
+  <path d="M70,72 Q58,55 45,50 Q52,65 38,72 Q52,78 58,95 Q65,80 70,72" fill="#c9c9c9"/>
+  
+  <!-- Inner petals (flower pattern) -->
+  <path d="M100,60 Q92,75 88,85 Q94,78 100,76 Q106,78 112,85 Q108,75 100,60" fill="#c9c9c9"/>
+  <path d="M125,82 Q112,80 104,85 Q112,84 115,88 Q114,94 115,102 Q118,92 125,82" fill="#c9c9c9"/>
+  <path d="M118,115 Q110,105 104,100 Q108,106 107,112 Q103,115 98,120 Q108,118 118,115" fill="#c9c9c9"/>
+  <path d="M82,115 Q90,105 96,100 Q92,106 93,112 Q97,115 102,120 Q92,118 82,115" fill="#c9c9c9"/>
+  <path d="M75,82 Q88,80 96,85 Q88,84 85,88 Q86,94 85,102 Q82,92 75,82" fill="#c9c9c9"/>
+  
+  <!-- Outer decorative arcs between circles -->
+  <path d="M100,12 Q120,30 135,22" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  <path d="M150,45 Q155,65 170,72" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  <path d="M155,110 Q145,125 155,145" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  <path d="M100,188 Q80,170 65,178" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  <path d="M30,130 Q38,110 28,95" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+</svg>
