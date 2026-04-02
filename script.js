@@ -120,7 +120,7 @@ async function submitReservation(event) {
     btn.disabled = true;
 
     try {
-        const response = await fetch('http://localhost:3000/api/reservations', {
+        const response = await fetch('https://restaurant-backend-2-f0a0.onrender.com/api/reservations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // 1. Fetch menu from backend wrapper
     if (!document.querySelector('.menu-tabs')) return; // Exit if not on menu page
     
-    const API_URL = 'http://localhost:3000/api/menu';
+    const API_URL = 'https://restaurant-backend-2-f0a0.onrender.com/api/menu';
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
